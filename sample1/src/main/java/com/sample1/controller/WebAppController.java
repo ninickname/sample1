@@ -1,5 +1,6 @@
 package com.sample1.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,11 +9,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.sample1.model.User;
+import com.sample1.service.UserService;
 
 @Controller
 //@RequestMapping("/")
 public class WebAppController {
 
+	@Autowired(required = true )
+	private UserService userService;
+	
 	/*
 	@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(ModelMap model) {
@@ -27,7 +32,6 @@ public class WebAppController {
 	}
 	*/
 	
-	// crud
 	
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
@@ -43,6 +47,8 @@ public class WebAppController {
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String home() {
 		System.out.println("HomeController: Passing through...");
+		
+		userService.getUserById(321L);
 		return "welcome";
 	}
 

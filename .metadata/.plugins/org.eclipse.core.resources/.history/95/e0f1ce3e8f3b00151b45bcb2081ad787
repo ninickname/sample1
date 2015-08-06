@@ -1,0 +1,8 @@
+package com.sample1.model;
+
+public class User {
+
+	private String name;
+	private long age;
+	
+}

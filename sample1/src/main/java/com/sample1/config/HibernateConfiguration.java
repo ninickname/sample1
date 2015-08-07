@@ -2,7 +2,8 @@ package com.sample1.config;
 
 
 import java.util.Properties;
- 
+
+import javax.naming.NamingException;
 import javax.sql.DataSource;
  
 import org.hibernate.SessionFactory;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -34,7 +36,7 @@ public class HibernateConfiguration {
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
      }
-     
+     /*
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -44,7 +46,20 @@ public class HibernateConfiguration {
         dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
         return dataSource;
     }
-     
+     */
+    
+    @Bean
+    DataSource dataSource() {
+        DataSource dataSource = null;
+        JndiTemplate jndi = new JndiTemplate();
+        try {
+            dataSource = (DataSource) jndi.lookup("java:comp/env/MYDB");
+        } catch (NamingException e) {
+    System.out.println("nnope nope nope ");
+    }
+        return dataSource;
+    }
+    
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));

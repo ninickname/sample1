@@ -5,5 +5,11 @@
 
   <display-name>Spring MVC 4 Demo BOJ</display-name>
   <!---->
-  
+  <description>Web.xml of the project</description>
+  <resource-ref>
+      <description>DB Connection</description>
+      <res-ref-name>MYDB</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
 </web-app>

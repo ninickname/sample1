@@ -26,7 +26,7 @@
 
 	<!-- TAKEN FROM https://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html -->
 
-	<Resource id = "MYDB" name="MYDB" auth="Container" 
+	<Resource name="jdbc/MYDB" auth="Container" 
 	type="javax.sql.DataSource"
 		maxActive="100" maxIdle="30" maxWait="10000"
 		username="root"

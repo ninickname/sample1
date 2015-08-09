@@ -1,9 +1,7 @@
 package com.sample1.controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -25,9 +23,11 @@ public class WebAppController {
 	@Autowired(required = true )
 	private UserService userService;
 	
-	
+	/*
 	@Autowired
 	private DataSource datasource;
+	*/
+	
 	/*
 	@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(ModelMap model) {
@@ -45,11 +45,11 @@ public class WebAppController {
 	
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody User get() {
-		User user = new User();
-		user.setName("Bloop");
-		user.setAge(3);
-		user.setWife(new User("hjyfhg",5));
+	public @ResponseBody  List<User> get() {
+		return userService.getAllUsers();
+		
+		
+/*
 		
 		try {
 			Connection  con = datasource.getConnection();
@@ -73,8 +73,7 @@ public class WebAppController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return user;
+		*/
 	}
 
 	

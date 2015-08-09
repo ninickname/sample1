@@ -1,35 +1,49 @@
 package com.sample1.model;
 
-public class User {
 
-	private String name;
-	private long age;
-	private User wife;
+import javax.persistence.*;
+
+@Entity
+public class User {
+	
+	@Id
+	private String id;
+	private String fname;
+	private String lname;
+	private String address;
+	
 	public User() {
 		super();
 	}
-	public User(String name, long age) {
+	public User(String id, String fname, String lname, String address) {
 		super();
-		this.name = name;
-		this.age = age;
+		this.id = id;
+		this.fname = fname;
+		this.lname = lname;
+		this.address = address;
 	}
-	public String getName() {
-		return name;
+	public String getAddress() {
+		return address;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public String getFname() {
+		return fname;
 	}
-	public long getAge() {
-		return age;
+	public String getId() {
+		return id;
 	}
-	public void setAge(long age) {
-		this.age = age;
+	public String getLname() {
+		return lname;
 	}
-	public User getWife() {
-		return wife;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public void setWife(User wife) {
-		this.wife = wife;
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
-	
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}	
 }

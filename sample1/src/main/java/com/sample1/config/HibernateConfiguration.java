@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -46,6 +45,8 @@ public class HibernateConfiguration {
         dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
         return dataSource;
     }
+    
+    this datasource is here just to be basic example of defining the datasource 
      */
     
     @Bean
@@ -53,12 +54,15 @@ public class HibernateConfiguration {
         DataSource dataSource = null;
         JndiTemplate jndi = new JndiTemplate();
         try {
-            dataSource = (DataSource) jndi.lookup("java:comp/env/MYDB");
+            dataSource = (DataSource) jndi.lookup("java:comp/env/jdbc/MYDB");
         } catch (NamingException e) {
-    System.out.println("nnope nope nope ");
+        	System.out.println("nnope nope nope ");
     }
         return dataSource;
     }
+    
+    /*currently not used because the project is around Spring JPA DATA and not hibernate 
+     * and all that follows , so the next two functions can basically be commented out*/
     
     private Properties hibernateProperties() {
         Properties properties = new Properties();

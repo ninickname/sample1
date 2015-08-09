@@ -2,8 +2,10 @@ package com.sample1.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sample1.dao.imp.UserRepository;
 import com.sample1.model.User;
 import com.sample1.service.UserService;
 
@@ -19,11 +21,14 @@ import com.sample1.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+	
+	@Autowired
+	UserRepository userRepo;
+	
 	@Override
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userRepo.findAll();
 	}
 
 	@Override

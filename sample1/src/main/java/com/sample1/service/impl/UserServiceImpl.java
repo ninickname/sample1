@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sample1.dao.imp.UserRepository;
+import com.sample1.dao.UserRepository;
 import com.sample1.model.User;
 import com.sample1.service.UserService;
 
@@ -22,7 +22,7 @@ import com.sample1.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	@Autowired
+	@Autowired(required = true)
 	UserRepository userRepo;
 	
 	@Override

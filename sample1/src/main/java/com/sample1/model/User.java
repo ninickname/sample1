@@ -4,9 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-
 public class User{
-
+	
 	@Id
 	@Column(name = "id")
 	private Long id;

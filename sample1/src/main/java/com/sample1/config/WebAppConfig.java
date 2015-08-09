@@ -12,12 +12,18 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages="com.sample1")
-//@PropertySource("classpath:database.properties")
-@EnableJpaRepositories("com.sample1.dao")
+// the same as basePackages=
+@ComponentScan({"com.sample1.model",
+				"com.sample1.service",
+				"com.sample1service.impl",
+				"com.sample1.controller"})
+
+@EnableJpaRepositories(
+		basePackages = {
+				//"com.sample1.dao",
+				"com.sample1.dao.impl"})
+
 public class WebAppConfig {
-	
-	
 	@Bean
 	public UrlBasedViewResolver setupViewResolver(){
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
@@ -26,8 +32,4 @@ public class WebAppConfig {
 		resolver.setViewClass(JstlView.class);
 		return resolver;
 	}
-	
-	
-	
-
 }

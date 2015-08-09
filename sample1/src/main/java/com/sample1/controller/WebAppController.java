@@ -17,9 +17,8 @@ import com.sample1.model.User;
 import com.sample1.service.UserService;
 
 @Controller
-
 public class WebAppController {
-
+	
 	@Autowired(required = true )
 	private UserService userService;
 	
@@ -28,19 +27,4 @@ public class WebAppController {
 	public @ResponseBody  List<User> get() {
 		return userService.getAllUsers();
 	}
-
-//	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-//	@ResponseStatus(HttpStatus.OK)
-//	public @ResponseBody  User get(@Parm id) {
-//		return userService.getUsers(id);
-//	}
-
-	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
-	public String home() {
-		System.out.println("HomeController: Passing through...");
-		
-		userService.getUserById(321L);
-		return "welcome";
-	}
-
 }

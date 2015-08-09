@@ -8,15 +8,10 @@ import org.springframework.stereotype.Service;
 import com.sample1.dao.UserRepository;
 import com.sample1.model.User;
 import com.sample1.service.UserService;
-
-
-
 /**
- * 
  * @author Nick
  * here in the service we will ask the REPOSITORY for some info , do some black magic with it ,
  * and return to the caller of the service the required information 
- * 
  */
 
 @Service
@@ -26,8 +21,7 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepo;
 	
 	@Override
-	public List<User> getAllUsers() {
-		
+	public List<User> getAllUsers() {		
 		return userRepo.findAll();
 	}
 
@@ -36,5 +30,4 @@ public class UserServiceImpl implements UserService {
 		System.out.println("UserServiceImpl: getUserById : yaya atleast we got here    ");
 		return null;
 	}
-
 }

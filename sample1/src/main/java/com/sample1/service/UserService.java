@@ -16,6 +16,6 @@ import com.sample1.model.User;
 public interface UserService {
 	
 	List<User> getAllUsers();
-	User getUserById(long id );
+	User getUserById(Long id );
 	
 }

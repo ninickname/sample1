@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(long id) {
+	public User getUserById(Long id) {
 		System.out.println("UserServiceImpl: getUserById : yaya atleast we got here    ");
-		return null;
+		return userRepo.findOne(id);
 	}
 }

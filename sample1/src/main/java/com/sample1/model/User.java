@@ -18,10 +18,26 @@ public class User {
 	@Column(name = "address")
 	private String address;
 
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "owner_id", referencedColumnName = "id")
 	private List<Phone> phones;
 
-	/*POJO*/
+	public void addPhones(List<Phone> phones) {
+		if (this.phones == null)
+			this.phones = phones;
+		else
+			this.phones.addAll(phones);
+	}
+
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
+	}
+
+	/* POJO */
 	public User() {
 		super();
 	}
@@ -34,14 +50,7 @@ public class User {
 		this.address = address;
 	}
 
-	/*Additional*/
-	public void addPhone(Phone phone) {
-        this.phones.add(phone);
-        if (phone.getOwner() != this) {
-            phone.setOwner(this);
-        }
-    }
-	/*pojo continues */
+	/* pojo continues */
 	public String getAddress() {
 		return address;
 	}
@@ -56,10 +65,6 @@ public class User {
 
 	public String getLname() {
 		return lname;
-	}
-
-	public List<Phone> getPhones() {
-		return phones;
 	}
 
 	public void setAddress(String address) {
@@ -81,9 +86,5 @@ public class User {
 	public void setLname(String lname) {
 		this.lname = lname;
 	}
-	
-	
-	public void setPhones(List<Phone> phones) {
-		this.phones = phones;
-	}
+
 }

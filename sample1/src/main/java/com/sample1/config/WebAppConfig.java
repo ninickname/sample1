@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @EnableJpaRepositories(
 		basePackages = {
-				//"com.sample1.dao",
+				"com.sample1.dao",
 				"com.sample1.dao.impl"})
 
 public class WebAppConfig {

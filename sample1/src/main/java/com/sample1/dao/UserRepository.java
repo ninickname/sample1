@@ -8,6 +8,5 @@ import com.sample1.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User ,Long >{
 
-	//public List<User> findUsersWithIdBiggerThan(int id);
 
 }

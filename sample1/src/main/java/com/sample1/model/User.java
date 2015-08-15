@@ -22,6 +22,20 @@ public class User {
 	@JoinColumn(name = "owner_id", referencedColumnName = "id")
 	private List<Phone> phones;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(	name = "user_car", 
+				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id") ,
+				inverseJoinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id") )
+	private List<Car> carList;
+
+	public List<Car> getCars() {
+		return carList;
+	}
+
+	public void setCars(List<Car> carList) {
+		this.carList = carList;
+	}
+
 	public void addPhones(List<Phone> phones) {
 		if (this.phones == null)
 			this.phones = phones;

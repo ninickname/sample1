@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +56,16 @@ public class WebAppController {
 	public User getUserByLnameAndFname(HttpServletRequest request, String fname, String lname) {
 		return sampleUserService.findByLnameAndFname(lname, fname);
 	}
-
+	
+	@RequestMapping(value = "/pages/users/{pageNumber}", method = RequestMethod.GET)
+	public Page getRunbookPage(@PathVariable Integer pageNumber ) {
+	    Page<User> page = sampleUserService.getUserPage(pageNumber);
+	    return page;
+	}
+	
+	@RequestMapping(value = "/pages/users2/{pageNumber}", method = RequestMethod.GET)
+	public Page getRunbookPage2(@PathVariable Integer pageNumber ) {
+	    Page<User> page = sampleUserService.getUserPage2(pageNumber);
+	    return page;
+	}
 }

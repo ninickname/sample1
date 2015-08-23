@@ -58,14 +58,24 @@ public class WebAppController {
 	}
 	
 	@RequestMapping(value = "/pages/users/{pageNumber}", method = RequestMethod.GET)
-	public Page getRunbookPage(@PathVariable Integer pageNumber ) {
+	public Page<User> getRunbookPage(@PathVariable Integer pageNumber ) {
 	    Page<User> page = sampleUserService.getUserPage(pageNumber);
 	    return page;
 	}
 	
 	@RequestMapping(value = "/pages/users2/{pageNumber}", method = RequestMethod.GET)
-	public Page getRunbookPage2(@PathVariable Integer pageNumber ) {
+	public Page<User> getRunbookPage2(@PathVariable Integer pageNumber ) {
 	    Page<User> page = sampleUserService.getUserPage2(pageNumber);
 	    return page;
+	}
+	
+	@RequestMapping(value = "/getUserWhosPhoneNumber/{phoneNum} ", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public User getUserWhosPhoneNumber(@PathVariable Long phoneNum) {
+		User u = sampleUserService.getUserWhosPhoneNumber(phoneNum);
+		System.out.println(u);
+		rape rape ;
+		return u;
+	
 	}
 }

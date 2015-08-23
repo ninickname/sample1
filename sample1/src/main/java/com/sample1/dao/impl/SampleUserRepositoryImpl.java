@@ -22,6 +22,9 @@ public interface SampleUserRepositoryImpl extends SampleRepository<User, Long> {
 	public Page<User> findUsersById(Pageable pageable);
 
 	
+	@Query("select u from Users where u.phones[0].getNumber = ?")
+	public User getUserWhosPhoneNumber(@Param(value = "num") long num);
+	
 	
 	/*######### ATTENTION ######### 
 	 * return repo.findAll(request);

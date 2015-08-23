@@ -47,4 +47,9 @@ public class SampleUserServiceImpl implements SampleUserService {
 		return repo.findUsersById(request);
 
 	}
+
+	@Override
+	public User getUserWhosPhoneNumber(Long num) {
+		return repo.getUserWhosPhoneNumber(num);
+	}
 }

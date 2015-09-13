@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,6 +46,9 @@ public class WebAppController {
 	public User getUserById(@PathVariable Long userId) {
 		User u = sampleUserService.getUserById(userId);
 		System.out.println(u);
+		u.getPhones();
+		u.getCars();
+		System.out.println("jesus");
 		return u;
 	}
 
@@ -64,17 +69,19 @@ public class WebAppController {
 	}
 	
 	@RequestMapping(value = "/pages/users2/{pageNumber}", method = RequestMethod.GET)
-	public Page<User> getRunbookPage2(@PathVariable Integer pageNumber ) {
+	public  Page<User> getRunbookPage2(@PathVariable Integer pageNumber ) {
 	    Page<User> page = sampleUserService.getUserPage2(pageNumber);
 	    return page;
 	}
 	
-	@RequestMapping(value = "/getUserWhosPhoneNumber/{phoneNum} ", method = RequestMethod.GET)
+	@RequestMapping(value = "/getUserWhosPhoneNumber/{phoneNum} ", method = RequestMethod.GET , produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(HttpStatus.OK)
-	public User getUserWhosPhoneNumber(@PathVariable Long phoneNum) {
+	public  @ResponseBody  User getUserWhosPhoneNumber(@PathVariable Long phoneNum) {
 		User u = sampleUserService.getUserWhosPhoneNumber(phoneNum);
 		System.out.println(u);
-		rape rape ;
+		u.getPhones();
+		u.getCars();
+		System.out.println("jesus");
 		return u;
 	
 	}

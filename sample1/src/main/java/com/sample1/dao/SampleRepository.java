@@ -7,7 +7,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface SampleRepository<T , ID extends Serializable> extends JpaRepository<T, ID> {
-	
-	 public  abstract T getWhereIdIs(ID id );
-	 
+	 public T getWhereIdIs(ID id ); 
 }

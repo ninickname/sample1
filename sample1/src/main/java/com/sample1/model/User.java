@@ -2,7 +2,17 @@ package com.sample1.model;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "users")
@@ -18,16 +28,21 @@ public class User {
 	@Column(name = "address")
 	private String address;
 
+	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "owner_id", referencedColumnName = "id")
 	private List<Phone> phones;
 
+	
+	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(	name = "user_car", 
 				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id") ,
 				inverseJoinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id") )
 	private List<Car> carList;
 
+	
 	public List<Car> getCars() {
 		return carList;
 	}

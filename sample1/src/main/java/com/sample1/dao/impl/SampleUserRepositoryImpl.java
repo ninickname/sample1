@@ -22,9 +22,17 @@ public interface SampleUserRepositoryImpl extends SampleRepository<User, Long> {
 	public Page<User> findUsersById(Pageable pageable);
 
 	
-	@Query("select u from Users where u.phones[0].getNumber = ?")
+	@Query("select u from User u  where u.id in (select p.owner_id from Phone p where p.number = ?1)")
 	public User getUserWhosPhoneNumber(@Param(value = "num") long num);
 	
+	/*works great
+	 * http://localhost:8080/sample1/getUserWhosPhoneNumber/123
+	 * as an example 
+	 * returns : 
+	 * {"id":21,"fname":"fname21","lname":"lname21","address":"adress21","phones":[{"number":123,"owner_id":21}],"cars":[]}
+	 * 
+	 * but not sure if it  is worse than join 
+	 * */
 	
 	/*######### ATTENTION ######### 
 	 * return repo.findAll(request);

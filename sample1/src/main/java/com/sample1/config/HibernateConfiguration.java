@@ -6,14 +6,19 @@ import java.util.Properties;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jndi.JndiTemplate;
+import org.springframework.orm.hibernate3.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
- 
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+@EnableTransactionManagement
 @Configuration
 @PropertySource(value = { "classpath:hibernate.properties" })
 public class HibernateConfiguration {
@@ -51,12 +56,24 @@ public class HibernateConfiguration {
   /* the next function and the  //@EnableTransactionManagement annotation can be deleted 
    * {the annotation is already missing but can be copy pasted from this comment },
    *  they are here just in case we will want to use hibernate without the spring data jpa encapsulation*/   
-    
-   /*@Bean
+    /*
+   @Bean
     @Autowired
     public HibernateTransactionManager transactionManager(SessionFactory s) {
        HibernateTransactionManager txManager = new HibernateTransactionManager();
        txManager.setSessionFactory(s);
        return txManager;
     }*/
+   
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(dataSource());
+		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+		entityManagerFactoryBean.setPackagesToScan("com.sample1.model");
+		entityManagerFactoryBean.setJpaProperties(hibernateProperties());
+
+		return entityManagerFactoryBean;
+	}
+    
 }

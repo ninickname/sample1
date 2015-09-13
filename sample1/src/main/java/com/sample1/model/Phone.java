@@ -10,8 +10,7 @@ import javax.persistence.Table;
 
 public class Phone {
   @Id
-  @Column(name="number")
-
+  @Column(name="num")
   private long number;
 
   @Column(name="owner_id")

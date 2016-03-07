@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sample1.model.User;
 import com.sample1.service.SampleUserService;
@@ -34,7 +35,7 @@ public class WebAppController {
 
 	@Autowired(required = true)
 	private SampleUserService sampleUserService;
-
+	
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public List<User> get() {

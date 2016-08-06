@@ -150,7 +150,6 @@
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
 						<warName>sample1</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
-						<outputDirectory>c:\something\</outputDirectory>
 					</configuration>
 				</plugin>
 			</plugins>
